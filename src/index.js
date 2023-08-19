@@ -1,3 +1,5 @@
+import './style.css';
+
 const todos = [
   {
     task: 'Go to the gym',
