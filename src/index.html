@@ -1,38 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Todo-List</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 </head>
 <body>
-<main class="main" id="main">
-    <div class="container">
-        <div class="heading">Hope's Todolist</div>
-        <!-- <span><i class="fa-solid fa-arrows-rotate refresh-it"></i></span> -->
-    </div>
-    <hr>
-    <form id="todo-form">
-        <input type="text" placeholder="Add a task" id="text-input-field">
-        <button id="add-button" type="submit">
-            <i class="fa-solid fa-plus"></i>
-        </button>
+  <div class="main-container">
+    <header>
+      <h3>My Schedule</h3>
+      <i class="fa-solid fa-arrows-rotate"></i>
+    </header>
+    <form action="">
+      <input type="text" name="list" id="list" placeholder="Update your list...">
+      <i class="fa-solid fa-arrow-turn-down fa-rotate-270 fa-sm"></i>
     </form>
-    <div class="todos-container">
-        <div class="todo-item-container">
-            <!-- Individual todo items will be added here -->
-        </div>
-        <!-- todo container end -->
-    </div>
-    <div id="taskholder">
-        <!-- Additional content related to tasks can be added here -->
-    </div>
-    <div class="clear-it">
-        <span class="clearer">Clear Completed Tasks</span>
-    </div>
-    <!-- container end -->
-</div>
-</main>
-<script src="index.js"></script>
+    <ul class="list-container" id="schedule"></ul>
+    <button class="clear-btn" type="button">Clear all completed</button>
+  </div>
+
+  <script src="index.js"></script>
 </body>
 </html>

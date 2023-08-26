@@ -1,37 +1,52 @@
+/* eslint-disable no-shadow */
 import './style.css';
 
-const todos = [
-  {
-    task: 'Go to the gym',
-    completed: false,
-    id: 1,
-  },
-  {
-    task: 'Wash the car',
-    completed: false,
-    id: 2,
-  },
-];
+document.addEventListener('DOMContentLoaded', () => {
+  const schedule = [
+    { description: 'Coding', completed: false, index: 1 },
+    { description: 'Drinking', completed: true, index: 2 },
+    { description: 'Reading', completed: false, index: 3 },
+  ];
 
-function dotolist() {
-  todos.sort((a, b) => a.id - b.id); // Corrected sorting based on the 'id' property
+  function populateTaskList(schedule) {
+    const taskList = document.getElementById('schedule');
 
-  const autoCreate = document.getElementById('taskholder');
+    schedule.sort((a, b) => a.index - b.index);
 
-  const ul = document.createElement('ul');
+    schedule.forEach((task) => {
+      const listItem = document.createElement('li');
+      listItem.classList.add('list-item');
 
-  todos.forEach((todo) => {
-    const li = document.createElement('li');
-    li.textContent = todo.task;
+      const listDiv = document.createElement('div');
+      listDiv.classList.add('list-div');
 
-    if (todo.completed) {
-      li.classList.add('completed');
-    }
+      const checkbox = document.createElement('input');
+      checkbox.type = 'checkbox';
+      checkbox.classList.add('check');
+      checkbox.checked = task.completed;
+      // eslint-disable-next-line func-names
+      checkbox.addEventListener('change', function () {
+        if (this.checked) {
+          listItem.classList.add('completed');
+        } else {
+          listItem.classList.remove('completed');
+        }
+      });
 
-    ul.appendChild(li);
-  });
+      const description = document.createElement('p');
+      description.textContent = task.description;
 
-  autoCreate.appendChild(ul);
-}
+      const ellipsisIcon = document.createElement('i');
+      ellipsisIcon.classList.add('fa-solid', 'fa-ellipsis-vertical');
 
-document.addEventListener('DOMContentLoaded', dotolist);
+      listDiv.appendChild(checkbox);
+      listDiv.appendChild(description);
+      listItem.appendChild(listDiv);
+      listItem.appendChild(ellipsisIcon);
+
+      taskList.appendChild(listItem);
+    });
+  }
+
+  populateTaskList(schedule);
+});
