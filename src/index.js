@@ -14,7 +14,7 @@ const todos = [
 ];
 
 function dotolist() {
-  todos.sort((a, b) => a.index - b.index);
+  todos.sort((a, b) => a.id - b.id); // Corrected sorting based on the 'id' property
 
   const autoCreate = document.getElementById('taskholder');
 
