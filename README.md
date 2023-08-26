@@ -107,7 +107,7 @@ For more information on the importance of a professional README for your reposit
 
 > Add a link to your deployed project.
 
-<!-- - [Live Demo Link](https://obote.github.io/todo-list/) -->
+- [Live Demo Link](https://mutesihope.github.io/To-do-list/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -130,8 +130,8 @@ npm install
 Clone this repository to your desired folder:
 
 ```sh
-  cd my-folder
-  git clone git@github.com:Obote/todo-list.git
+  cd To-do-list
+  git clone https://github.com/mutesihope/To-do-list.git
 ```
 
 ### Install
