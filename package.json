@@ -25,7 +25,7 @@
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.21.0",
-    "webpack": "^5.88.1",
+    "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
   },
@@ -735,5 +735,13 @@
     "yargs-parser": "^20.2.9",
     "yauzl": "^2.10.0",
     "zwitch": "^1.0.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mutesihope/To-do-list.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mutesihope/To-do-list/issues"
+  },
+  "homepage": "https://github.com/mutesihope/To-do-list#readme"
 }
