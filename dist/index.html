@@ -3,22 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>To-Do List</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <title>TO-DO-LIST-REMOVE AND <ADDress></ADDress></title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/bd260a0fea.js" crossorigin="anonymous"></script>
 <script defer src="main.js"></script></head>
 <body>
-  <div class="main-container">
-    <header>
-      <h3>My Schedule</h3>
-      <i class="fa-solid fa-arrows-rotate"></i>
-    </header>
-    <form action="">
-      <input type="text" name="list" id="list" placeholder="Update your list...">
-      <i class="fa-solid fa-arrow-turn-down fa-rotate-270 fa-sm"></i>
-    </form>
-    <ul class="list-container" id="schedule"></ul>
-    <button class="clear-btn" type="submit">Clear all completed</button>
-  </div>
+  
+  <section>
+    <div id="todo-list">
+      <h1>To-Do List<i class="fa-solid fa-arrows-rotate"></i></h1>
+    
+
+      <div class="add-task-wrapper">
+        <input type="text" id="new-task" placeholder="Add a task ...">
+          <button type="submit" id="add-task-btn">Add Task</button>
+      </div>
+
+
+      <div class="me-1">
+        <ul id="task-list" class="drag-list"></ul>
+      </div>
+
+      <button id="clear-list">Clear all completed</button>
+    </div>
+  </section>
 
   <script src="index.js"></script>
 </body>

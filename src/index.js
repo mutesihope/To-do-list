@@ -1,52 +1,69 @@
-/* eslint-disable no-shadow */
-import './style.css';
+// / index.js
 
-document.addEventListener('DOMContentLoaded', () => {
-  const schedule = [
-    { description: 'Coding', completed: false, index: 1 },
-    { description: 'Drinking', completed: true, index: 2 },
-    { description: 'Reading', completed: false, index: 3 },
-  ];
+import "./style.css";
+import { initTodoList } from "./newFun.js";
 
-  function populateTaskList(schedule) {
-    const taskList = document.getElementById('schedule');
+let tasks = [];
 
-    schedule.sort((a, b) => a.index - b.index);
+const taskList = document.getElementById("task-list");
+const addTaskButton = document.querySelector("#add-task-btn");
+const newTaskInput = document.getElementById("new-task");
+const clearListButton = document.getElementById("clear-list");
 
-    schedule.forEach((task) => {
-      const listItem = document.createElement('li');
-      listItem.classList.add('list-item');
+const saveTasksToLocalStorage = () => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+};
 
-      const listDiv = document.createElement('div');
-      listDiv.classList.add('list-div');
+const updateIndexes = () => {
+  tasks.forEach((task, index) => {
+    task.index = index;
+  });
+};
+const performJob = () => {
+  taskList.innerHTML = "";
 
-      const checkbox = document.createElement('input');
-      checkbox.type = 'checkbox';
-      checkbox.classList.add('check');
-      checkbox.checked = task.completed;
-      // eslint-disable-next-line func-names
-      checkbox.addEventListener('change', function () {
-        if (this.checked) {
-          listItem.classList.add('completed');
-        } else {
-          listItem.classList.remove('completed');
-        }
-      });
+  tasks.forEach((task, index) => {
+    const taskItem = document.createElement("li");
+    taskItem.className = "task";
+    taskItem.setAttribute("draggable", true);
+    taskItem.setAttribute("data-index", task.index);
+    taskItem.innerHTML = `
+      <input type="checkbox" ${task.completed ? "checked" : ""} data-index="${
+      index + 1
+    }">
+      <span class="task-description">${task.description}</span>
+      <i class="fa-regular fa-trash-can" data-index="${index + 1}"></i>
+    `;
+    taskList.appendChild(taskItem);
+  });
 
-      const description = document.createElement('p');
-      description.textContent = task.description;
-
-      const ellipsisIcon = document.createElement('i');
-      ellipsisIcon.classList.add('fa-solid', 'fa-ellipsis-vertical');
-
-      listDiv.appendChild(checkbox);
-      listDiv.appendChild(description);
-      listItem.appendChild(listDiv);
-      listItem.appendChild(ellipsisIcon);
-
-      taskList.appendChild(listItem);
-    });
+  initTodoList(tasks, updateIndexes, performJob);
+};
+addTaskButton.addEventListener("click", () => {
+  const newTaskDescription = newTaskInput.value.trim();
+  if (newTaskDescription !== "") {
+    const newTask = {
+      description: newTaskDescription,
+      completed: false,
+      index: tasks.length + 1,
+    };
+    tasks.push(newTask);
+    newTask.index = tasks.length;
+    saveTasksToLocalStorage();
+    performJob();
+    newTaskInput.value = "";
   }
-
-  populateTaskList(schedule);
 });
+
+clearListButton.addEventListener("click", () => {
+  tasks = [];
+  updateIndexes();
+  saveTasksToLocalStorage();
+  performJob();
+});
+
+const savedTasks = JSON.parse(localStorage.getItem("tasks"));
+tasks = savedTasks || [];
+
+updateIndexes();
+performJob();
